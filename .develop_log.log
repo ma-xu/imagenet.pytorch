@@ -1,0 +1,2 @@
+Apr/25/2019
+For CP_SE_ResNet, only add convlution(1*1) when the channels are different.

@@ -1,9 +1,11 @@
 import torch
 from resnet import *
 from se_resnet import *
+from p_se_resnet import *
+from cp_se_resnet import *
 from utils.flops_counter import get_model_complexity_info
 def test():
-    net = resnet34()
+    net = P_SE_resnet152()
     y = net((torch.randn(1,3,224,224)))
     print(y.size())
 
