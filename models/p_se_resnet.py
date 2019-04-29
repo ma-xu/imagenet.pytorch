@@ -2,17 +2,8 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 
 
-__all__ = ['P_SE_ResNet', 'P_SE_resnet18', 'P_SE_resnet34', 'P_SE_resnet50', 'P_SE_resnet101',
-           'P_SE_resnet152', 'P_SE_resnext50_32x4d', 'P_SE_resnext101_32x8d']
-
-
-model_urls = {
-    'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',
-    'resnet34': 'https://download.pytorch.org/models/resnet34-333f7ec4.pth',
-    'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',
-    'resnet101': 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth',
-    'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',
-}
+__all__ = ['P_SE_ResNet', 'p_se_resnet18', 'p_se_resnet34', 'p_se_resnet50', 'p_se_resnet101',
+           'p_se_resnet152', 'p_se_resnext50_32x4d', 'p_se_resnext101_32x8d']
 
 
 def conv3x3(in_planes, out_planes, stride=1, groups=1):
@@ -209,7 +200,7 @@ class P_SE_ResNet(nn.Module):
         return x
 
 
-def P_SE_resnet18(pretrained=False, **kwargs):
+def p_se_resnet18( **kwargs):
     """Constructs a ResNet-18 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -220,7 +211,7 @@ def P_SE_resnet18(pretrained=False, **kwargs):
     return model
 
 
-def P_SE_resnet34(pretrained=False, **kwargs):
+def p_se_resnet34( **kwargs):
     """Constructs a ResNet-34 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -231,7 +222,7 @@ def P_SE_resnet34(pretrained=False, **kwargs):
     return model
 
 
-def P_SE_resnet50(pretrained=False, **kwargs):
+def p_se_resnet50( **kwargs):
     """Constructs a ResNet-50 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -242,7 +233,7 @@ def P_SE_resnet50(pretrained=False, **kwargs):
     return model
 
 
-def P_SE_resnet101(pretrained=False, **kwargs):
+def p_se_resnet101( **kwargs):
     """Constructs a ResNet-101 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -253,7 +244,7 @@ def P_SE_resnet101(pretrained=False, **kwargs):
     return model
 
 
-def P_SE_resnet152(pretrained=False, **kwargs):
+def p_se_resnet152( **kwargs):
     """Constructs a ResNet-152 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -264,14 +255,14 @@ def P_SE_resnet152(pretrained=False, **kwargs):
     return model
 
 
-def P_SE_resnext50_32x4d(pretrained=False, **kwargs):
+def p_se_resnext50_32x4d( **kwargs):
     model = P_SE_ResNet(P_SE_Bottleneck, [3, 4, 6, 3], groups=32, width_per_group=4, **kwargs)
     # if pretrained:
     #     model.load_state_dict(model_zoo.load_url(model_urls['resnext50_32x4d']))
     return model
 
 
-def P_SE_resnext101_32x8d(pretrained=False, **kwargs):
+def p_se_resnext101_32x8d( **kwargs):
     model = P_SE_ResNet(P_SE_Bottleneck, [3, 4, 23, 3], groups=32, width_per_group=8, **kwargs)
     # if pretrained:
     #     model.load_state_dict(model_zoo.load_url(model_urls['resnext101_32x8d']))

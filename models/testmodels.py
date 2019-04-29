@@ -3,9 +3,14 @@ from resnet import *
 from se_resnet import *
 from p_se_resnet import *
 from cp_se_resnet import *
+from spp_se_resnet import *
+from p_spp_se_resnet import *
+from cp_spp_se_resnet import *
 from utils.flops_counter import get_model_complexity_info
+
+
 def test():
-    net = P_SE_resnet152()
+    net = cp_spp_se_resnet152()
     y = net((torch.randn(1,3,224,224)))
     print(y.size())
 
@@ -17,5 +22,6 @@ def test():
     flops, params = get_model_complexity_info(net, (224, 224),as_strings=True, print_per_layer_stat=False)
     print('Flops:  ' + flops)
     print('Params: ' + params)
+
 
 test()

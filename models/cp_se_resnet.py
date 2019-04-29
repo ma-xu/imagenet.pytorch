@@ -2,8 +2,8 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 
 
-__all__ = ['CP_SE_ResNet', 'CP_SE_resnet18', 'CP_SE_resnet34', 'CP_SE_resnet50', 'CP_SE_resnet101',
-           'CP_SE_resnet152', 'CP_SE_resnext50_32x4d', 'CP_SE_resnext101_32x8d']
+__all__ = ['CP_SE_ResNet', 'cp_se_resnet18', 'cp_se_resnet34', 'cp_se_resnet50', 'cp_se_resnet101',
+           'cp_se_resnet152', 'cp_se_resnext50_32x4d', 'cp_se_resnext101_32x8d']
 
 
 
@@ -203,7 +203,7 @@ class CP_SE_ResNet(nn.Module):
         return x
 
 
-def CP_SE_resnet18(pretrained=False, **kwargs):
+def cp_se_resnet18( **kwargs):
     """Constructs a ResNet-18 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -214,7 +214,7 @@ def CP_SE_resnet18(pretrained=False, **kwargs):
     return model
 
 
-def CP_SE_resnet34(pretrained=False, **kwargs):
+def cp_se_resnet34( **kwargs):
     """Constructs a ResNet-34 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -225,7 +225,7 @@ def CP_SE_resnet34(pretrained=False, **kwargs):
     return model
 
 
-def CP_SE_resnet50(pretrained=False, **kwargs):
+def cp_se_resnet50( **kwargs):
     """Constructs a ResNet-50 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -236,7 +236,7 @@ def CP_SE_resnet50(pretrained=False, **kwargs):
     return model
 
 
-def CP_SE_resnet101(pretrained=False, **kwargs):
+def cp_se_resnet101( **kwargs):
     """Constructs a ResNet-101 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -247,7 +247,7 @@ def CP_SE_resnet101(pretrained=False, **kwargs):
     return model
 
 
-def CP_SE_resnet152(pretrained=False, **kwargs):
+def cp_se_resnet152( **kwargs):
     """Constructs a ResNet-152 model.
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
@@ -258,14 +258,14 @@ def CP_SE_resnet152(pretrained=False, **kwargs):
     return model
 
 
-def CP_SE_resnext50_32x4d(pretrained=False, **kwargs):
+def cp_se_resnext50_32x4d( **kwargs):
     model = CP_SE_ResNet(CP_SE_Bottleneck, [3, 4, 6, 3], groups=32, width_per_group=4, **kwargs)
     # if pretrained:
     #     model.load_state_dict(model_zoo.load_url(model_urls['resnext50_32x4d']))
     return model
 
 
-def CP_SE_resnext101_32x8d(pretrained=False, **kwargs):
+def cp_se_resnext101_32x8d( **kwargs):
     model = CP_SE_ResNet(CP_SE_Bottleneck, [3, 4, 23, 3], groups=32, width_per_group=8, **kwargs)
     # if pretrained:
     #     model.load_state_dict(model_zoo.load_url(model_urls['resnext101_32x8d']))

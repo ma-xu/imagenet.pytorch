@@ -1,4 +1,12 @@
 import numpy as np
-z = np.array([1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0])
-A = np.exp(z)/sum(np.exp(z))
-print(A)
+import torch
+import torch.nn as nn
+
+
+A=torch.randn(1,224,224)
+BB=nn.AdaptiveAvgPool2d(1)
+CC = nn.AdaptiveAvgPool2d(2)
+DD = nn.AdaptiveAvgPool2d(4)
+print(BB(A))
+print(CC(A))
+print(CC(DD(A)))
