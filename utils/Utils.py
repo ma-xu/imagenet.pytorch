@@ -1,5 +1,6 @@
 import torch
 import shutil
+import os
 
 def adjust_learning_rate(optimizer, epoch, args):
     """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
@@ -7,10 +8,11 @@ def adjust_learning_rate(optimizer, epoch, args):
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
-    torch.save(state, filename)
+def save_checkpoint(state, is_best, filename='checkpoint.pth.tar',file_path='./checkpoint/'):
+    torch.save(state, file_path+filename)
     if is_best:
-        shutil.copyfile(filename, 'model_best.pth.tar')
+        best_filename='best_'+filename
+        shutil.copyfile(file_path+filename, file_path+best_filename)
 
 
 class AverageMeter(object):
@@ -69,3 +71,12 @@ def accuracy(output, target, topk=(1,)):
             correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
             res.append(correct_k.mul_(100.0 / batch_size))
         return res
+
+
+def write_record(file_path,str):
+    if not os.path.exists(file_path):
+        # os.makedirs(file_path)
+        os.system(r"touch {}".format(file_path))
+    f = open(file_path, 'a')
+    f.write(str)
+    f.close()

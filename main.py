@@ -249,13 +249,14 @@ def main_worker(gpu, ngpus_per_node, args):
 
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
                 and args.rank % ngpus_per_node == 0):
+            filename = 'cp_'+args.arch+'.pth.tar'
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.arch,
                 'state_dict': model.state_dict(),
                 'best_acc1': best_acc1,
                 'optimizer' : optimizer.state_dict(),
-            }, is_best)
+            }, is_best,filename=filename)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
@@ -300,6 +301,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         if i % args.print_freq == 0:
             progress._print(i)
+    file_path='records/' +args.arch+'_train.txt'
+    record_str=str(epoch)+'\t'+"%.3f"%(losses.avg)+'\t'+"%.3f"%(top1.avg)+'\t'+"%.3f"%(top5.avg)+'\n'
+    write_record(file_path,record_str)
 
 
 def validate(val_loader, model, criterion, args):
@@ -336,6 +340,10 @@ def validate(val_loader, model, criterion, args):
 
             if i % args.print_freq == 0:
                 progress._print(i)
+
+        file_path='records/' +args.arch+'_test.txt'
+        record_str="%.3f"%(losses.avg)+'\t'+"%.3f"%(top1.avg)+'\t'+"%.3f"%(top5.avg)+'\n'
+        write_record(file_path,record_str)
 
         # TODO: this should also be done with the ProgressMeter
         print(' * Acc@1 {top1.avg:.3f} Acc@5 {top5.avg:.3f}'
