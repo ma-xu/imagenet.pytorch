@@ -21,6 +21,8 @@ import torchvision.datasets as datasets
 import models as models
 from utils import *
 
+os.environ["HDF5_USE_FILE_LOCKING"] = "FALSE"
+
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
     and callable(models.__dict__[name]))
